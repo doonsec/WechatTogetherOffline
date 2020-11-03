@@ -1,0 +1,437 @@
+.vh {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.fade-screen {
+  background: rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@-webkit-keyframes specialFadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes specialFadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+  }
+}
+.specialFadeIn {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+}
+
+@-webkit-keyframes specialFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+
+@keyframes specialFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+.specialFadeOut {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+}
+
+@-webkit-keyframes specialSlideInRight {
+  from {
+    -webkit-transform: translate3d(10%, 0, 0);
+            transform: translate3d(10%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes specialSlideInRight {
+  from {
+    -webkit-transform: translate3d(10%, 0, 0);
+            transform: translate3d(10%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+.specialSlideInRight {
+  -webkit-animation-name: specialSlideInRight;
+          animation-name: specialSlideInRight;
+}
+
+@-webkit-keyframes specialFadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(10%, 0, 0);
+            transform: translate3d(10%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+@keyframes specialFadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(10%, 0, 0);
+            transform: translate3d(10%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+.spceialFadeInRight {
+  -webkit-animation-name: specialFadeInRight;
+          animation-name: specialFadeInRight;
+}
+
+.menu-search-container.active {
+  display: block;
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  display: none;
+  transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.menu ul li {
+  transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.menu-mac.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-delay: 30ms;
+          animation-delay: 30ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-mac.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-delay: 245ms;
+          animation-delay: 245ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-iPad.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-delay: 70ms;
+          animation-delay: 70ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-iPad.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-delay: 210ms;
+          animation-delay: 210ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-iPhone.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-delay: 100ms;
+          animation-delay: 100ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-iPhone.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-delay: 170ms;
+          animation-delay: 170ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-watch.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-delay: 130ms;
+          animation-delay: 130ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-watch.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-delay: 130ms;
+          animation-delay: 130ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-tv.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-delay: 170ms;
+          animation-delay: 170ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-tv.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-delay: 100ms;
+          animation-delay: 100ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-support.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-delay: 210ms;
+          animation-delay: 210ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-support.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-delay: 70ms;
+          animation-delay: 70ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-search.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-delay: 245ms;
+          animation-delay: 245ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-search.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-delay: 30ms;
+          animation-delay: 30ms;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-store.is-closed {
+  -webkit-animation-name: specialFadeIn;
+          animation-name: specialFadeIn;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.menu-store.hidden {
+  -webkit-animation-name: specialFadeOut;
+          animation-name: specialFadeOut;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.menu-search-input {
+  -webkit-animation-name: specialFadeInRight;
+          animation-name: specialFadeInRight;
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-delay: 350ms;
+          animation-delay: 350ms;
+}
+
+.search-sub-menu h3 {
+  -webkit-animation-name: specialFadeInRight;
+          animation-name: specialFadeInRight;
+  -webkit-animation-duration: 700ms;
+          animation-duration: 700ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.search-sub-menu ul li {
+  -webkit-animation-name: specialFadeInRight;
+          animation-name: specialFadeInRight;
+  -webkit-animation-duration: 500ms;
+          animation-duration: 500ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.search-sub-menu ul li:nth-child(1) {
+  -webkit-animation-delay: 0ms;
+          animation-delay: 0ms;
+}
+.search-sub-menu ul li:nth-child(2) {
+  -webkit-animation-delay: 30ms;
+          animation-delay: 30ms;
+}
+.search-sub-menu ul li:nth-child(3) {
+  -webkit-animation-delay: 50ms;
+          animation-delay: 50ms;
+}
+.search-sub-menu ul li:nth-child(4) {
+  -webkit-animation-delay: 70ms;
+          animation-delay: 70ms;
+}
+.search-sub-menu ul li:nth-child(5) {
+  -webkit-animation-delay: 90ms;
+          animation-delay: 90ms;
+}
+
+
+
+.menu-container {
+  position: relative;
+  margin: 0 auto;
+  margin-top: -5px;
+  max-width: 980px;
+  padding: 0 22px;
+}
+.menu-container ul {
+  list-style: none;
+}
+.menu-container ul li {
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  margin-right: 76px;
+
+}
+.menu-container ul li:last-child {
+  margin-right: 0;
+}
+.menu-container ul li a {
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont,  "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",  "Fira Sans", "Droid Sans", "Helvetica Neue",  sans-serif;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 100;
+  font-size: 16px;
+  float: left;
+}
+.menu-container ul li a:hover {
+  color: #969696;
+}
+.menu-container.menu-apple {
+  background-repeat: no-repeat;
+  width: 20px;
+}
+
+.apple-icon {
+  font-size: 20px;
+}
+
+.menu-search-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 20.6667%;
+  width: 56.66667%;
+  z-index: 2;
+}
+
+.menu-search-container a {
+  color: #fff;
+}
+.menu-search-container a:first-child {
+  display: block;
+  float: left;
+  padding-right: 10px;
+}
+.menu-search-container.active {
+  display: block;
+}
+
+.menu-search-close {
+  position: absolute;
+  right: -183px;
+  top: 0;
+}
+

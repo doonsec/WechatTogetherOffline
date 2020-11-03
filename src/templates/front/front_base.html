@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="referrer" content="never">
+    <meta name="referrer" content="no-referrer"/>
+    <script src="{{ url_for('static', filename='common/jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_base.css') }}">
+    <script src="{{ url_for('static', filename='common/layui/layui.js') }}"></script>
+    <script src="{{ url_for('static', filename='common/jquery.toTop.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='common/layui/css/layui.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="{{ url_for('static', filename='common/zlajax.js') }}"></script>
+    <script src="{{ url_for('static', filename='common/zlparam.js') }}"></script>
+    <script src="{{ url_for('static', filename='common/jquery.slimscroll.min.js') }}"></script>
+    {#	<script src="{{ url_for('static', filename='common/jump.js') }}"></script>#}
+    {#识别不同设备跳转#}
+    <script src="{{ url_for('static', filename='front/js/front_base.js') }}"></script>
+
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="header">
+    <div class="headerinner">
+        <ul class="headernav">
+            <li class="logo">
+                <!---<img src="" alt="" />--->
+                <a href="{{ url_for('front.index') }}" ><img
+                        src="{{ url_for('static', filename='front/img/doonsec.png') }}" alt=""></a>
+            </li>
+            <li><a href="{{ url_for('front.index') }}">首页</a></li>
+                     <li><a href="{{ url_for('front.wechat_github') }}">公众号仓库</a></li>
+            <li><a href="https://github.com/DropsOfZut/awesome-security-weixin-official-accounts"
+                   target="_blank">Github仓库</a></li>
+            <li><a href="{{ url_for('front.year_report') }}" target="_blank">年报总结</a></li>
+
+            <li><a href="{{ url_for('front.announcement') }}">公告</a></li>
+            <li class="search">
+                <a class="search_pic"></a>
+            </li>
+        </ul>
+        <!-- Search -->
+
+        <div style="z-index: 2">
+            <form action="">
+                <div class="search_main">
+                    <button class="search_btn" type="submit"></button>
+                    <input class="search_text" type="text" id="search_input" placeholder="高级搜索: 支持 '&' , '|' 语法"
+                           style="color: white">
+                    <span class="close_btn"></span>
+                    <div class="search-sub-menu" style="border-radius:0 0 15px 15px">
+                        <h3 class="layui-icon layui-icon-fire" style="font-size: 12px; color: #ff1e1ed4;"> 热 门 搜 索 （静态内置）</h3>
+                        <ul id="hot_search">
+                            <li><a href="#">内网&渗透</a></li>
+                            <li><a href="#">应急响应</a></li>
+                            <li><a href="#">总结|汇总|整理</a></li>
+                            <li><a href="#">ctf</a></li>
+                            <li><a href="#">Metasploit</a></li>
+                            <li><a href="#">Burpsuite练兵场</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="layui-container" style="margin-top: 10px">
+        <div class="layui-row layui-col-space15">
+            {# 左侧#}
+
+            <div class="layui-col-md9 layui-col-sm9">
+                {% block main_left %}
+
+                {% endblock %}
+            </div>
+            {# 右侧 #}
+            <div class="layui-col-md3 layui-col-sm3">
+                <div id="right">
+
+                    {% block main_right %}
+
+                    {% endblock %}
+                </div>
+            </div>
+            {#中间#}
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        /*搜索*/
+        $(".search_pic").click(function () {
+            $(".headernav").fadeOut(500);
+            $(".search_main").fadeIn(1000);
+        });
+        $(".search_main .close_btn").click(function () {
+            $(".search_main").fadeOut(500);
+            $(".headernav").fadeIn(1000);
+        });
+        search_input = $("#search_input");
+        search_input.focus(function () {
+            $(".search-sub-menu").fadeIn(1);
+        });
+        search_input.blur(function () {
+            $(".search-sub-menu").fadeOut(500);
+        });
+        search_input.click(function () {
+            $(".search-sub-menu").fadeIn(1);
+        })
+
+    });
+
+    $(function () {
+        $('#box').slimScroll({
+            height: '100', //容器高度
+            size: "6px", //滚动条宽度
+            color: "#009688", //滚动条颜色,默认#000000
+            alwaysVisible: true, //是否禁用隐藏滚动条,默认false
+            opacity: 4,  // 滚动条透明度
+
+        })
+    });
+    // 使用刚指定的配置项和数据显示图表。
+    $.ajax({
+        type: "GET",
+        url: "http://wechat.doonsec.com/admin/dashboard/barChart6/",
+        dataType: 'json',
+        success: function (result) {
+            hot_search = $('#hot_search')
+            var x_data = result['data']['x_data'];
+            var li_text = ''
+            x_data.map(function (obj, index) {
+                li_text += "<li><a  href=\"#\" rel=\"external nofollow\" rel=\"external nofollow\" onclick=\"input_text('" + obj + "');return false;\">" + obj + "</a></li>"
+            });
+            hot_search.html(li_text)
+        }
+    });
+
+    function input_text(obj) {
+        $('#search_input').val(obj)
+    }
+</script>
+
+{#社区公众号添加#}
+<form class="layui-form" action="" lay-filter="example" id="add" style="display: none">
+    <div class="layui-row layui-col-space20">
+        <div class="layui-col-md5 layui-col-xs12 ">
+            <blockquote class="layui-elem-quote layui-text">
+                <h3>提交须知：</h3>
+                <br>
+                本站为微信安全聚合平台，原则上只收录与<span style="color: #009688;">网络安全</span>相关的微信公众号。
+                <br>
+                <br>
+                Q：如何参与公众号的贡献？
+                <br>
+                A：首先发现一个新的安全公众号后，不要着急提交，看到导航栏上面的搜索图标没？先搜搜看。没有结果再去提交公众号。
+                <br>
+                <br>
+                Q：贡献公众号会需要哪些参数？
+                <br>
+                A：1、公众号的名字。 2、公众号的标签，不确定分类或者你想要的分类不在选项里面请选择其他。
+                3、<span style="color: #009688">公众号的链接</span>,找到公众号的历史文章连接。
+                或者找到二维码的链接。链接中包含微信公众号的`__biz`字段才为有效的链接。否则系统可能不识别你的提交。
+                4、创建者，此选项不为必选项。选填你的名字或Github的名字。
+                图文详解<a
+                    href="https://mp.weixin.qq.com/s/S53jgEjCUrLRoRzrOHujSQ" target="_blank">图文详解</a>
+                <br>
+                <br>
+                Q：为什么我提交了公众号，而没看到前台展示呢？
+                <br>
+                A：提交的公众号需要管理员后台审核，审核不通过的将不会加入到监控任务中。
+                <br>
+                <br>
+                Q：参与贡献后会得到什么？
+                <br>
+                A：当你的提交的公众号被管理员收录后，将会将你的名字自动加入到<a
+                    href="https://github.com/DropsOfZut/awesome-security-weixin-official-accounts">awesome-security-weixin-official-accounts</a>Github贡献列表中</a>
+                所以提供一个有效的github名称(而不是链接)将会在Github中很好展示。
+                <br>
+                <br>
+                Q：网站后续会有什么改进？
+                <br>
+                A：在提交的面板增加留言的选项。
+                提高网站的访问速度。(完成)
+                增加文章后台过滤功能，过滤`鸡汤`文章。（完成）
+                提供展示公众号的季度分析，筛选质量更高的公众号。（完成）
+            </blockquote>
+        </div>
+        <div class="layui-col-md7  layui-col-xs12" style="margin-top: 3%">
+            <div class="layui-form-item">
+                <label class="layui-form-label">公众号名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="account_name" lay-verify="required" autocomplete="off"
+                           placeholder="请输入微信号"
+                           class="layui-input" style="width:  400px">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">标签</label>
+                    <div class="layui-input-inline" style="width:  400px">
+                        <select name="tag_name" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+
+                            {% for tag in tags %}
+                                <option value={{ tag.id }}>{{ tag.tag_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">公众号链接</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="account_link" lay-verify="required" autocomplete="off"
+                           placeholder="公众号链接"
+                           class="layui-input" style="width:  400px">
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">创建者</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="founder" placeholder="请输创建者" autocomplete="off"
+                           class="layui-input" style="width:  400px">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">验证码</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="graph_captcha" placeholder="验证码"
+                           lay-verify="required"
+                           autocomplete="off" style="width:  200px">
+                </div>
+
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="add" id="hello">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-sm">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<button type="button" class="layui-btn layui-btn-radius layui-btn-lg to-top">回到顶部</button>
+</body>
+</html>

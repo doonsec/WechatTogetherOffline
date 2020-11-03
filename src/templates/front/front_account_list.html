@@ -1,0 +1,84 @@
+{% extends 'front/front_base.html' %}
+
+{% block head %}
+    {#    	<link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_weekly.css') }}">#}
+    <script src="{{ url_for('static', filename='front/js/front_article.js') }}"></script>
+    <script src="{{ url_for('static',filename='admin/js/admin_announcement.js') }}"></script>
+{% endblock %}
+
+{% block title %}
+    公众号-洞见微信聚合
+{% endblock %}
+
+{% block content %}
+    <div class="text">
+        <div class="article">
+
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend><span style="color: #00a2eb">Github同步仓库 </span></legend>
+            </fieldset>
+
+
+            <div class="layui-collapse" lay-accordion="">
+                {% for tag in tags %}
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">{{ tag.tag_name }}</h2>
+                        <div class="layui-colla-content layui-show">
+                            <div class="layui-fluid layadmin-maillist-fluid">
+                                <div class="layui-row layui-col-space15">
+                                    {% for foo in tag.accounts %}
+                                        <div class="layui-col-md4 layui-col-sm6">
+                                            <div class="layadmin-contact-box">
+                                                <div class="layui-col-md4 layui-col-sm6">
+                                                    <a href="javascript:;">
+                                                        <div class="layadmin-text-center">
+
+                                                            <img src="{{ foo.head_url }}" style="width:50px;higth:50px">
+                                                            <div class="layadmin-maillist-img layadmin-font-blod">{{ foo.verify }}
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                                <div class="layui-col-md8 layadmin-padding-left20 layui-col-sm6">
+                                                    <a href="javascript:;">
+                                                        <h3 class="layadmin-title">
+                                                            <strong>{{ foo.account }}</strong>
+                                                        </h3>
+                                                        <p class="layadmin-textimg">
+                                                            <i class="layui-icon layui-icon-location"></i>
+                                                            上海
+                                                        </p>
+                                                    </a>
+                                                    <div class="layadmin-address">
+                                                        <a href="javascript:;">
+
+                                                            <strong>{{ foo.summary }}</strong>
+                                                            <br>
+                                                           {{ foo.spider_time }}
+                                                            <br>
+
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+{% endblock %}
+

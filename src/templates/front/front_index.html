@@ -1,0 +1,164 @@
+{% extends 'front/front_base.html' %}
+
+{% block title %}
+    洞见微信聚合-安全圈搜狗微信搜索_订阅号及文章内容独家收录,一搜即达
+{% endblock %}
+
+{% block head %}
+    {#	<link href="https://cdn.bootcss.com/font-awesome/5.10.0-12/css/all.min.css" rel="stylesheet">#}
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_index.css') }}">
+    <script src="{{ url_for('static', filename='front/js/front_index.js') }}"></script>
+    <script src="{{ url_for('static', filename='front/js/front_search.js') }}"></script>
+{% endblock %}
+
+{% block main_left %}
+    <div class="layui-carousel" id="test1" style="border-radius: 20px">
+        <div carousel-item style="border-radius: 20px;">
+
+            <div style="border-radius: 20px;">
+                <a href="" target="_blank">
+                    <img src="../static/front/img/wechat.jpg" alt="" style="border-radius: 20px;">
+                </a>
+            </div>
+            <div style="border-radius: 20px;">
+                <a href="" target="_blank">
+                    <img src="../static/front/img/donate.png" alt="" style="border-radius: 20px;">
+                </a>
+            </div>
+        </div>
+        <span type="text" data-num="1" id="num" style="display: none"></span>
+    </div>
+
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="background: white; border-radius: 15px">
+        <ul class="layui-tab-title" id="cats">
+            {% for tag in tags %}
+                <li id="{{ tag.id }}" class="search-li">{{ tag.tag_name }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    {#    文章列表#}
+    <div class="article" id="demo" style="border-radius: 15px">
+    </div>
+
+{% endblock %}
+
+{% block main_right %}
+    <div class="layui-card" style="border-radius: 15px">
+        <div class="layui-card-header">公告
+
+            <span class="layui-badge layui-bg-green"
+                  style="float: right; margin-top: 12px">{{ article_num }}</span>
+            <span class="layui-badge layui-bg-gray"
+                  style="float: right; margin-top: 12px">文章数:</span>
+        </div>
+        <div class="layui-card-body1" id="box" style="height: 100px">
+            {{ announcement.context|safe }}
+        </div>
+    </div>
+    <script>
+        {#$(document).ready(function () {#}
+        {##}
+        {#          $(".layui-colla-content span a").each(function (i) {#}
+        {#              $(this).hover(function () {#}
+        {#                  $('.tips').addClass("hover");#}
+        {#                  $(this).parent().find(".tips").addClass("hover");#}
+        {#                  $(this).parent().addClass("lihover");#}
+        {#                  var self = $(this);#}
+        {#                  var name = $(this).attr('img-name');#}
+        {#                  var account_id = $(this).attr('img-data');#}
+        {#                  console.log(self.next().find('img').attr('src'));#}
+        {#                  if (self.next().find('img').attr('src').length != 0) {#}
+        {#                      return;#}
+        {#                  }#}
+        {#                  zlajax.get({#}
+        {#                      'url': '/get_img/',#}
+        {#                      'data': {#}
+        {#                          'account_id': account_id,#}
+        {#                      },#}
+        {#                      'success': function (data) {#}
+        {#                          if (data['code'] == 200) {#}
+        {##}
+        {#                              var img = data['data']['img'];#}
+        {#                              self.next().find('img').attr('src', img);#}
+        {#                              $('.tipscont').find('img').attr('src', img);#}
+        {#                          }#}
+        {#                      }#}
+        {#                  })#}
+        {#              }, function () {#}
+        {#                  $('.tips').removeClass("hover");#}
+        {#                  $(this).parent().find(".tips").removeClass("hover");#}
+        {#                  $(this).parent().removeClass("lihover");#}
+        {#              });#}
+        {#          });#}
+        {##}
+        {#      });#}
+        window.onload = window.onresize = function () {
+            map_height = document.documentElement.clientHeight;//获取页面可见高度
+            var oDiv = document.getElementById('box2');
+            oDiv.style.height = (map_height - 80) * 0.8 + 'px';
+            {#oDiv.style.background = 'green';//测试数据#}
+            {#time(10)#}
+            $('#box2').slimScroll({
+                height: (map_height - 80) * 0.8, //容器高度
+                size: "6px", //滚动条宽度
+                color: "#009688", //滚动条颜色,默认#000000
+                alwaysVisible: false, //是否禁用隐藏滚动条,默认false
+                opacity: 4,  // 滚动条透明度
+
+            })
+        }
+        //页面初始化
+
+    </script>
+    {#二维码图片提示框#}
+    <div class="tips">
+        <div class="tipscont">
+            <img src=""
+                 width="100" height="100" alt=""/>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">公众号<span class="layui-badge layui-bg-green"
+                                                style="float: right; margin-top: 12px">{{ account_num }}</span>
+        </div>
+        <div id="box2">
+            <div class="layui-collapse">
+                {#			<div class="layui-colla-item">#}
+                {#				<h2 class="layui-colla-title" style="background: white">热门公众号</h2>#}
+                {#				<div class="layui-colla-content layui-show">洞见网安</div>#}
+                {#				<div class="layui-colla-content ">洞见网安</div>#}
+                {#			</div>#}
+                <div class="layui-collapse" lay-accordion>
+                    {% for tag in tags %}
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title" style="background: white">{{ tag.tag_name }}<span
+                                    class="layui-badge layui-bg-green"
+                                    style="float: right; margin-top: 12px">{{ tag.accounts|length }}</span></h2>
+                            <div class="layui-colla-content">
+                                {% for foo in tag.accounts %}
+                                    <span>
+                                <a href="#" img-data="{{ foo.account_id }}" img-name="{{ foo.account_name }}"
+                                   img-src="">
+                                    <span
+                                            class="{{ tag_style|random }}" id="tag">{{ foo.account_name }}
+                                    </span>
+                                </a>
+{#                                <div class="tips1">#}
+{#                                    <div class="tipscont1">#}
+{#                                        <img src=""#}
+{#                                             width="100" height="100" alt=""/>#}
+{#                                    </div>#}
+{#                                </div>#}
+                                </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

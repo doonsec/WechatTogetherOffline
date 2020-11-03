@@ -1,0 +1,263 @@
+/* html {filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(100%);}
+*/
+/*界面主题变成灰色*/
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    border: none;
+    outline: none;
+    font-family: "微软雅黑";
+    font-weight: 100;
+}
+
+img {
+    outline: none;
+    border: none;
+}
+
+body {
+    width: 100%;
+    min-width: 1200px;
+    background: #e2e2e2;
+    font-family: "微软雅黑";
+}
+
+/*公共头部样式*/
+.header {
+    width: 100%;
+    height: 50px;
+    background: #333333;
+    min-width: 1200px;
+    font-size: 14px;
+}
+
+.headerinner {
+    width: 1200px;
+    height: 100%;
+    padding: 0 1px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+
+
+}
+
+/* 导航部分 */
+.headernav {
+    width: 100%;
+    overflow: hidden;
+}
+
+.headernav li {
+    float: left;
+    line-height: 50px;
+    margin: 0 20px;
+}
+
+.headernav li a {
+    color: #fff;
+    padding: 0 10px;
+    /*margin:0 12px;*/
+    transition: 0.6s;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -moz-transition: 0.6s;
+    cursor: pointer;
+
+}
+
+.headernav .logo {
+    width: 200px;
+    height: 100%;
+    /*margin-right: 20px;*/
+    /*padding-top: 10px;*/
+    box-sizing: border-box;
+    /*line-height: 28px;*/
+}
+
+.headernav .logo img {
+    /*width:105px;*/
+    height: 48px;
+
+}
+
+.headernav .logo .w1 {
+    width: 105px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 15px;
+}
+
+.headernav li.xz a {
+    color: #747474;
+}
+
+.headernav li a:hover {
+    color: #009688;
+}
+
+.headernav .search,
+.headernav .list,
+.headernav .close {
+    height: 50px;
+}
+
+.headernav .search a,
+.headernav .list a,
+.headernav .close a {
+    width: 18px;
+    height: 18px;
+    margin: 16px 30px 0 30px;
+    transition: 0.6s;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -moz-transition: 0.6s;
+    background: url(../img/search.png) no-repeat;
+}
+
+.headernav .search a:hover {
+    background: url(../img/search1.png) no-repeat;
+}
+
+.headernav .list a {
+    background: url(../img/list.png) no-repeat;
+}
+
+.headernav .list a:hover {
+    background: url(../img/list1.png) no-repeat;
+}
+
+/* 搜素框 */
+.search_main {
+    position: absolute;
+    left: 15%;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background: #333333;
+    display: none;
+    z-index: 2;
+}
+
+.search_main .search_btn,
+.search_main .close_btn {
+    width: 50px;
+    height: 50px;
+    transition: 0.6s;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -moz-transition: 0.6s;
+    background: url(../img/search.png) no-repeat center center;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.search_main .search_btn:hover {
+    background: url(../img/search1.png) no-repeat center center;
+}
+
+.search_main input.search_text {
+    height: 100%;
+    width: 90%;
+    background: #333333;
+    color: white;
+}
+
+.search_main .close_btn {
+    background: url(../img/close.png) no-repeat center center;
+    position: absolute;
+    top: 0;
+    /*right: -198px;*/
+}
+
+.search_main .close_btn:hover {
+    background: url(../img/close1.png) no-repeat center center;
+}
+
+#right {
+
+    position: fixed;
+    width: 20%;
+    float: left;
+}
+
+.layui-card-body1 {
+    position: relative;
+    /*padding: 10px  15px 15px;*/
+    /*padding-top: 10px;*/
+    /*padding-bottom: 0;*/
+    padding-right: 15px;
+    padding-left: 15px;
+    line-height: 24px;
+}
+
+
+/*搜索下拉框*/
+.search-sub-menu {
+    background: #ffffff;
+    width: 100%;
+    /*margin-top: 10%;*/
+    color: #999;
+    opacity: 1;
+    font-weight: 100;
+    padding: 15px 0 15px;
+    z-index: 1;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.search-sub-menu h3 {
+    font-size: 12px;
+    font-weight: 100;
+    margin-top: 3px;
+    padding-left: 28px;
+}
+
+.search-sub-menu ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.search-sub-menu ul li {
+    display: block;
+    text-align: left;
+    padding-bottom: 10px;
+    margin-top: 14px;
+    text-indent: 50px;
+}
+
+.search-sub-menu ul li a {
+    font-size: 15px;
+    color: #000000;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.search-sub-menu ul li a:hover {
+    /*background-color: #f2f2f2;*/
+    color: #2fdea2;
+}
+
+.search-sub-menu ul li a:first-child {
+    float: none;
+    padding-right: 0;
+}

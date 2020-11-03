@@ -1,0 +1,46 @@
+{% extends 'front/front_base.html' %}
+
+{% block head %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_announcement.css') }}">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<script src="{{ url_for('static',filename='front/js/front_announcement.js') }}"></script>
+{% endblock %}
+
+{% block title %}
+	公告-洞见微信聚合
+{% endblock %}
+
+{% block content %}
+	<div class="text">
+		<div class="article">
+			<br>
+			<fieldset class="layui-elem-field layui-field-title">
+				<legend><span style="color: #00a2eb">历史公告</span></legend>
+			</fieldset>
+			<ul class="layui-timeline" style="margin-left: 15%;margin-right: 15%">
+				{% for annocuncement in annocuncements %}
+					<li class="layui-timeline-item">
+						<i class="layui-icon layui-timeline-axis"></i>
+						<div class="layui-timeline-content layui-text">
+							<h3 class="layui-timeline-title layui-input-inline">{{ annocuncement.time|string }}</h3>
+							<p>
+								{{ annocuncement.context|safe }}
+							</p>
+							<br>
+						</div>
+					</li>
+				{% endfor %}
+
+				<li class="layui-timeline-item">
+					<i class="layui-icon layui-timeline-axis"></i>
+					<div class="layui-timeline-content layui-text">
+						<div class="layui-timeline-title">过去</div>
+					</div>
+				</li>
+			</ul>
+
+		</div>
+
+	</div>
+{% endblock %}
+

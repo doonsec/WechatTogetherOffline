@@ -1,0 +1,60 @@
+{% extends 'front/front_base.html' %}
+
+{% block head %}
+    <meta content="width=device-width," name="viewport">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/front_wechat_github.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='common/editor.md/css/editormd.css') }}"/>
+    <link href="{{ url_for('static', filename='common/editor.md/css/editormd.preview.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='common/editor.md/css/editormd.css') }}" rel="stylesheet"/>
+
+    <!--以下是js部分 -->
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='common/editor.md/lib/marked.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='common/editor.md/lib/prettify.min.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='common/editor.md/editormd.min.js') }}"></script>
+    <script>
+    {#扩展插件：点击图片放大二维码#}
+        layui.use(['jquery',  'layer'], function () {
+            var $ = layui.$;
+            $('img').on('click', function () {
+                var _this = $(this);
+                layer.open({
+                    type: 2,
+                    title: false,
+                    closeBtn: 0,
+                    area: ['430px', '430px'],
+                    skin: 'layui-layer-nobg', //没有背景色
+                    shadeClose: true,
+                    content: _this.attr('src')
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block title %}
+    快速关注公众号-洞见微信聚合
+{% endblock %}
+
+{% block content %}
+    <div class="text">
+        <div class="article">
+            <br>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend><span style="color: #00a2eb"></span></legend>
+            </fieldset>
+            <ul class="layui-timeline" id="content">
+                <div class="fancy-content">
+                    <div class=" editormd-html-preview markdown-body">
+                        {{ content|markdown2html|safe }}
+                    </div>
+                </div>
+            </ul>
+
+        </div>
+
+    </div>
+{% endblock %}
+
