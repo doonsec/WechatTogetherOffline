@@ -8,14 +8,14 @@
 
 ## 当前版本信息
 
-- V.0.1.0 Beta
+- V.0.1.1 Beta
 
 
 ## 介绍
 
 当我们看过一篇公众号文章忘记收藏，那天想找的时候可能已经忘了是那个公众号的那篇历史文章了。
 
-洞见微信聚合是一个收录安全圈公众号历史文章链接的工具。帮助使用者根据关键字快速找到公众号的历史文章。解决微信`搜一搜`搜索信息不全面的困扰。
+**洞见微信聚合**是一个收录安全圈公众号历史文章链接的工具。帮助使用者根据关键字快速找到公众号的历史文章。解决微信`搜一搜`搜索信息不全面的困扰。
 
 
 - **数据全**：目前整理数据已有10W+，每月数据增量大约5000篇。
@@ -69,7 +69,7 @@ python app.py
 部署完成。
 
 **docker部署（todo）**
-
+*方法一*
 步骤：
 1. 下载源码
 
@@ -85,10 +85,39 @@ https://cloud.189.cn/t/me6nMbUZJRzi（访问码：0qqi）
 3. 移动下载的数据库`wechat.db`至目录`src/db`下
 
 4. 部署docker
+    生成镜像
+    ```
+    docker build -t 'wechattogether' .
+    ```
+    运行容器
+
+    ```
+    docker run  -name doonsec_wechat -p 8000:8000 wechattogether -d
+    ```
 6. 打开浏览器，访问`127.0.0.1:8000`
 
 部署完成。
 
+*方法二*
+步骤：
+1. 下载源码
+
+```
+https://github.com/doonsec/WechatTogetherOffline.git
+```
+2. 下载文章数据库--`wechat.db`
+
+```
+https://cloud.189.cn/t/me6nMbUZJRzi（访问码：0qqi）
+```
+
+3. 移动下载的数据库`wechat.db`至目录`src/db`下
+4. 执行docker-compose.yml文件
+```
+docker-compose up -d
+```
+5. 打开浏览器，访问`127.0.0.1:8000`
+---
 或者直接使用docker镜像（todo）
 1. xx
 ```
@@ -117,6 +146,11 @@ docker
 **公众号展示**
 ![](/img/account.jpg)
 
+
+## 版本迭代
+
+- v.0.1.1 修复公众号展示错误
+- v.0.1.0 初始化项目
 
 ## 贡献
 ![](img/donate.png)
