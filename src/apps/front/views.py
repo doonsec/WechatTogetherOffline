@@ -10,6 +10,18 @@ from sqlalchemy import or_, and_
 
 from models import WechatTag, Announcement, WechatAccount, WechatArticleList
 from utils import field, tools
+import config
+
+def biz2account(biz):
+    '''
+    根据传入的biz返回公众号的名称
+    :param biz:
+    :return:
+    '''
+    account = WechatAccount.query.filter_by(__biz=biz).first()
+    if account:
+        return account.account
+    return ''
 
 
 def anaysis(articless, flag=None):
@@ -24,7 +36,7 @@ def anaysis(articless, flag=None):
         for i in articless:
             article = {}
             article['title'] = i.title
-            article['biz'] = getattr(i,'__biz')
+            article['biz'] = getattr(i, '__biz')
             article['account_name'] = i.account
             article['id'] = i.sn
             article['publish_time'] = str(i.publish_time)
@@ -45,17 +57,16 @@ def anaysis(articless, flag=None):
                 article['digest'] = '&nbsp; &nbsp;'
             else:
                 article['digest'] = i.digest
-            article['biz'] = getattr(i,'__biz')
+            article['biz'] = getattr(i, '__biz')
             article['cover'] = i.cover
             article['url'] = tools.url_remove_info(i.url)
             article['publish_time'] = str(i.publish_time)
-            article['account_name'] = (WechatAccount.query.filter_by(__biz=i.__biz).first()).account
+            article['account_name'] = biz2account(i.__biz)
             article['id'] = i.sn
             article['like'] = 0
             article['read'] = 0
             article_data.append(article)
     return article_data
-
 
 
 class IndexView(views.MethodView):
@@ -73,6 +84,7 @@ class IndexView(views.MethodView):
             'account_num': account_num,
             'article_num': article_num,
             'announcement': announcement,
+            'version':config.VERSON
         }
         return render_template('front/front_index.html', **context)
 
@@ -114,7 +126,7 @@ class TagsView(views.MethodView):
 
         cat = WechatTag.query.get(cat_id)
         article = WechatArticleList.query.filter(
-            getattr(WechatArticleList,'__biz').in_(set([i.account_id for i in cat.accounts]))).order_by(
+            getattr(WechatArticleList, '__biz').in_(set([i.account_id for i in cat.accounts]))).order_by(
             WechatArticleList.publish_time.desc())
         page = int(request.args.get('page'))
         limit = current_app.config['FRONT_ARTICLES']
@@ -145,14 +157,11 @@ class ArticleIDView(views.MethodView):
                 article_dict['account_name'] = article.account
                 article_dict['url'] = article.url
                 article_dict['content_html'] = tools.filter_html(article.content_html)
-                article_dict['id'] = getattr(article,'__biz')
+                article_dict['id'] = getattr(article, '__biz')
                 return field.success(message='', data=article_dict)
             else:
                 return field.params_error(message='没有该文章！')
         return field.params_error(message='参数错误！')
-
-
-
 
 
 # 前台搜索
@@ -270,7 +279,6 @@ class GetImgView(views.MethodView):
         return field.params_error('参数错误')
 
 
-
 # 公告内容
 class AnnouncementView(views.MethodView):
 
@@ -328,6 +336,3 @@ class AccountListView(views.MethodView):
             tag_dict['accounts'] = account_list
             new_tags.append(tag_dict)
         return render_template('front/front_account_list.html', tags=new_tags)
-
-
-
