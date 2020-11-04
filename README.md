@@ -68,8 +68,10 @@ python app.py
 
 部署完成。
 
-**docker部署（todo）**
+**docker部署**
+
 *方法一*
+
 步骤：
 1. 下载源码
 
@@ -112,11 +114,15 @@ https://cloud.189.cn/t/me6nMbUZJRzi（访问码：0qqi）
 ```
 
 3. 移动下载的数据库`wechat.db`至目录`src/db`下
+
 4. 执行docker-compose.yml文件
 ```
 docker-compose up -d
 ```
 5. 打开浏览器，访问`127.0.0.1:8000`
+
+部署完成。
+
 ---
 或者直接使用docker镜像（todo）
 1. xx
