@@ -15,4 +15,4 @@ SECRET_KEY = 'DROPS'
 # 首页文章加载片数
 FRONT_ARTICLES = 10
 
-VERSON ='V.0.1.1'
+VERSON ='V.0.1.2'

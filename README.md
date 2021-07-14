@@ -4,11 +4,9 @@
 ![gif动态使用效果图](/img/licecap.gif)
 
 
-# 离线版正式开源时间于年底，这是一个公开测试版
-
 ## 当前版本信息
 
-- V.0.1.1 Beta
+- V.0.1.2 Beta
 
 
 ## 介绍
@@ -24,9 +22,6 @@
 
 数据库信息的不足肯定会成为一个诟病的地方。前期数据的收录相对局限，需要多人提交维护一个相对全面的公众号列表。
 
-洞见网安提供了两种快速查询资料库的方式：
-1. 洞见微信聚合离线版
-2. anytxt查阅文档(todo编写)
 
 ## 部署
 
@@ -46,7 +41,8 @@ https://github.com/doonsec/WechatTogetherOffline.git
 2. 下载文章数据库--`wechat.db`
 
 ```
-https://cloud.189.cn/t/me6nMbUZJRzi（访问码：0qqi）
+链接：https://pan.baidu.com/s/1YHpyqgYCS6asiCy8t0U17w 
+提取码：doon
 ```
 
 3. 移动下载的数据库`wechat.db`至目录`src/db`下
@@ -81,7 +77,7 @@ https://github.com/doonsec/WechatTogetherOffline.git
 2. 下载文章数据库--`wechat.db`
 
 ```
-https://cloud.189.cn/t/me6nMbUZJRzi（访问码：0qqi）
+见上
 ```
 
 3. 移动下载的数据库`wechat.db`至目录`src/db`下
@@ -101,6 +97,7 @@ https://cloud.189.cn/t/me6nMbUZJRzi（访问码：0qqi）
 部署完成。
 
 *方法二*
+
 步骤：
 1. 下载源码
 
@@ -110,7 +107,7 @@ https://github.com/doonsec/WechatTogetherOffline.git
 2. 下载文章数据库--`wechat.db`
 
 ```
-https://cloud.189.cn/t/me6nMbUZJRzi（访问码：0qqi）
+见上
 ```
 
 3. 移动下载的数据库`wechat.db`至目录`src/db`下
@@ -123,17 +120,7 @@ docker-compose up -d
 
 部署完成。
 
----
-或者直接使用docker镜像（todo）
-1. xx
-```
-docker pull AJay13/wechatTogether
-docker 
-```
-2. xxxx
-3. 打开浏览器，访问`127.0.0.1:8000`
 
-部署完成。
 
 ## 界面展示
 
@@ -155,11 +142,13 @@ docker
 
 ## 版本迭代
 
+- v.0.1.2 修复公众号展示错误
 - v.0.1.1 修复公众号展示错误
 - v.0.1.0 初始化项目
 
 ## 贡献
-![](img/donate.png)
 you don`t
+
+![](img/donate.png)
 
 

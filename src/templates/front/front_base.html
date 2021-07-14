@@ -31,7 +31,7 @@
                         src="{{ url_for('static', filename='front/img/doonsec.png') }}" alt=""></a>
             </li>
             <li><a href="{{ url_for('front.index') }}">首页</a></li>
-                     <li><a href="{{ url_for('front.wechat_github') }}">公众号仓库</a></li>
+                     <li><a href="{{ url_for('front.wechat_github') }}" target="_blank">公众号仓库</a></li>
             <li><a href="https://github.com/DropsOfZut/awesome-security-weixin-official-accounts"
                    target="_blank">Github仓库</a></li>
             <li><a href="{{ url_for('front.year_report') }}" target="_blank">年报总结</a></li>
@@ -124,21 +124,7 @@
 
         })
     });
-    // 使用刚指定的配置项和数据显示图表。
-    $.ajax({
-        type: "GET",
-        url: "http://wechat.doonsec.com/admin/dashboard/barChart6/",
-        dataType: 'json',
-        success: function (result) {
-            hot_search = $('#hot_search')
-            var x_data = result['data']['x_data'];
-            var li_text = ''
-            x_data.map(function (obj, index) {
-                li_text += "<li><a  href=\"#\" rel=\"external nofollow\" rel=\"external nofollow\" onclick=\"input_text('" + obj + "');return false;\">" + obj + "</a></li>"
-            });
-            hot_search.html(li_text)
-        }
-    });
+
 
     function input_text(obj) {
         $('#search_input').val(obj)

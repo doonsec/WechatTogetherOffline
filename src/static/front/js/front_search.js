@@ -81,10 +81,10 @@ $(function () {
                                             "                        </div>\n" +
                                             "\n" +
                                             "                        <div class=\"layui-col-md2 layui-col-sm2\" id=\"account\">\n" +
-                                            "                            <span class=\"layui-badge-rim\">" + "<a href=/admin/wechat_echarts/?biz=" + item.biz + " target='_blank'>" + item.account_name.replace(r, replaceText) + "</a> </span>\n" +
+                                            "                            <span class=\"layui-badge-rim\">" + "<a href=http://wechat.doonsec.com/admin/wechat_echarts/?biz=" + item.biz + " target='_blank'>" + item.account_name.replace(r, replaceText) + "</a> </span>\n" +
                                             "                        </div>\n" + "\n" +
                                             "                        <div class=\"layui-col-md2 layui-col-sm2\" id=\"account\">\n" +
-                                            "                            <span class=\"layui-badge-rim\"><a href=\"article/?id=" + item.id + "\" target='_blank'>微信快照链接</a></span>\n" +
+                                            "                            <span class=\"layui-badge-rim\"><a href=\"http://wechat.doonsec.com/article/?id=" + item.id + "\" target='_blank'>微信快照链接</a></span>\n" +
                                             "                        </div>\n" +
                                             "                        <div class=\"layui-col-md1 layui-col-sm1\" id=\"account\">\n" +
                                             "                            <span class=\"layui-badge-rim\"><i class=\"layui-icon layui-icon-praise\" aria-hidden=\"true\"\n" +
